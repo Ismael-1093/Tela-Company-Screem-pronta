@@ -1,0 +1,445 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    overflow-y: scroll; /* Garante que a barra de rolagem apareça */
+}
+
+nav {
+    background-color: #091849;
+    color: white;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 4px solid #FA6916;
+    width: 100%;
+    z-index: 1000;
+}
+
+.navbar-brand {
+    margin-left: 20px;
+}
+
+.logo {
+    max-width: 40px;
+    height: auto;
+    transition: transform 0.2s ease-in-out;
+}
+
+.logo:hover {
+    transform: scale(1.5);
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.nav-right .nav-link {
+    color: white;
+    text-decoration: none;
+    margin-right: 10px;
+    padding: 10px 20px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+}
+
+.nav-right .nav-link:hover {
+    background-color: #FA6916;
+    transform: translateY(-2px);
+}
+
+.search-form {
+    margin-right: 20px;
+}
+
+.search-input {
+    border-radius: 20px;
+    padding: 10px;
+    border: none;
+    outline: none;
+    width: 200px;
+}
+
+.search-button {
+    border: none;
+    background-color: transparent;
+    color: white;
+    cursor: pointer;
+}
+
+.search-button i {
+    font-size: 16px;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin-top: 70px; /* Ajuste a margem para o topo */
+    padding: 20px;
+    background-color: transparent;
+    border-radius: 8px;
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+    text-align: center;
+    z-index: 999;
+    position: relative;
+}
+
+
+
+.card {
+    height: 300px;
+    background-color: #f8f9fa;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 4px solid #091849;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.card-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+    overflow: hidden;
+}
+
+.card-title {
+    font-size: 1.25rem;
+    margin-bottom: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.rating {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.rating > span {
+    color: gold;
+}
+
+.rating .no-rating {
+    color: black; /* Cor preta para "Não Avaliada" */
+    font-size: 16px;
+}
+
+.btn-primary {
+    width: 100%;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-primary:hover {
+    background-color: #FA6916;
+    transform: translateY(-2px);
+}
+
+.carousel-inner {
+    display: flex;
+}
+
+.carousel-item {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.carousel-item .row {
+    display: flex;
+    margin: 0;
+}
+
+.carousel-item .col-md-2 {
+    flex: 0 0 20%;
+    max-width: 20%;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    width: auto;
+    height: auto;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 0;
+    margin: 0;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    width: 30px;
+    height: 30px;
+    background-color: #091849;
+    background-size: 100% 100%;
+    border-radius: 50%;
+    display: inline-block;
+    position: relative;
+    color: #091849;
+}
+
+
+
+.carousel-control-prev-icon:hover,
+.carousel-control-next-icon:hover {
+    background-color: #091849;
+}
+
+.carousel-item .card {
+    height: 100%;
+    border: 4px solid #091849;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+}
+
+.carousel-item .card-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.profile-image-container, .profile-image-container2 {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: #f0f0f0;
+    position: relative;
+    transition: box-shadow 0.3s ease;
+    margin-right: 20px;
+}
+
+.profile-image-container:hover, .profile-image-container2:hover {
+    box-shadow: 0 0 0 3px #FA6916;
+}
+
+.profile-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+}
+
+.profile-image-container:hover, .profile-image-container2:hover {
+    box-shadow: 0 0 0 3px #FA6916;
+}
+
+.carousel-item .card img.card-img-top {
+    width: 90px;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin: 20px auto 0;
+    display: block;
+}
+
+.carousel-inner {
+    position: relative;
+    overflow: hidden;
+}
+
+.carousel-item {
+    display: none;
+    transition: opacity 0.6s ease;
+}
+
+.carousel-item.active {
+    display: block;
+    opacity: 1;
+}
+
+.carousel-item-next,
+.carousel-item-prev {
+    display: block;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+}
+
+.carousel-item-next.carousel-item-left,
+.carousel-item-prev.carousel-item-right {
+    opacity: 1;
+}
+
+.top-companies-bar {
+    background-color: #FA6916;
+    padding: 10px 20px;
+    border-top: 15px solid #091849;
+    border-radius: 0 30px 0 0;
+    width: 30%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-family: "Shrikhand", serif;
+    margin-bottom: 20px; /* Espaço abaixo para o conteúdo subsequente */
+    position: relative; /* Posiciona a barra de acordo com o fluxo normal do documento */
+    margin-right: 70%;
+}
+
+.top-companies-bar h1.lol {
+    font-size: 1.55rem;
+    color: white;
+    margin: 0;
+    flex: 1;
+}
+
+
+.view-all-button:hover {
+    cursor: pointer;
+}
+
+.view-all-button {
+    color: rgb(255, 255, 255); /* Cor padrão do botão */
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #FA6916;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.view-all-button:hover {
+    cursor: pointer;
+    color: rgb(255, 255, 255); /* Cor do texto em hover */
+}
+
+
+.lol2 {
+    background-color: #FA6916;
+    padding: 10px 20px;
+    border-top: 15px solid #091849;
+    border-radius: 30px 0 0 0;
+    width: 30%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-family: "Shrikhand", serif;
+    margin-bottom: 20px; /* Espaço abaixo para o conteúdo subsequente */
+    position: relative; /* Posiciona a barra de acordo com o fluxo normal do documento */
+    margin-left: 70%;
+}
+
+.lol2 h1.lol {
+    font-size: 20px;
+    color: white;
+    margin: 0;
+    padding-left: 35px;
+    flex: 1;
+}
+
+.carrossel {
+    max-width: 1100px; 
+    margin: 20px auto;
+    overflow: hidden; /* Para ocultar qualquer conteúdo que exceda o container */
+}
+
+.swiper-container {
+    width: 100%; /* Use 100% para ocupar a largura do container */
+    height: 100%; /* Ajuste conforme necessário */
+}
+
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 700px; /* Defina a altura desejada */
+    width: auto; /* Permite que o slide se ajuste ao conteúdo */
+    flex-shrink: 0; /* Impede que o slide encolha */
+}
+
+.swiper-pagination {
+    position: relative; /* Mantenha ou adicione se necessário */
+    bottom: 10px; /* Ajuste a distância do fundo */
+    margin-left: 534px;
+    transform: translateX(-50%); /* Ajusta a posição para centralizar */
+    z-index: 10; /* Certifique-se de que fique acima de outros elementos */
+}
+
+
+
+.containerdoindex {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    margin: 20px auto;
+    display: flex;
+    flex-direction: row;
+    border: 4px solid #091849;
+    margin-left: 0px;
+    width: 2000px;
+}
+
+
+.info{
+    text-align: left;
+}
+
+.map-container {
+    width: 300px; 
+    height: 300px; /* Aumentando a altura */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-left: 50px;
+
+
+    z-index: 1; 
+    position: relative; 
+}
+
+.map-container .map-iframe {
+    pointer-events: none;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+
+.map-container .map-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 500%;
+    background: rgba(255, 255, 255, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.map-overlay p {
+    color: black;
+    font-weight: bold;
+}

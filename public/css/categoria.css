@@ -1,0 +1,101 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+}
+
+nav {
+    background-color: #091849; /* azul */
+    color: white;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    border-bottom: 4px solid #FA6916;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-right: 10px;
+}
+
+.nav-right {
+    margin-left: auto; /* Empurra os itens de navegação para a direita */
+    display: flex;
+}
+
+.nav-right a {
+    padding: 10px 20px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.nav-right a:hover {
+    background-color: #FA6916;
+    transform: translateY(-2px);
+}
+
+.logo {
+    margin-left: 20px;
+    max-width: 40px;
+    transition: transform 0.2s ease-in-out;
+}
+
+.logo:hover {
+    transform: scale(1.5);
+}
+
+.container {
+    max-width: 400px; /* Aumentado para mais espaço */
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    text-align: center; /* Centraliza o conteúdo */
+}
+
+.card-title {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: #091849; /* Azul */
+}
+
+.form-label {
+    font-weight: bold;
+    color: #091849; /* Azul */
+    display: block; /* Garante que o label fique em uma nova linha */
+    margin-bottom: 10px; /* Espaço entre o label e o select */
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    transition: border-color 0.3s ease;
+    font-size: 1rem; /* Aumenta a legibilidade */
+}
+
+.form-control:focus {
+    border-color: #007bff; /* Azul mais escuro */
+    outline: none;
+}
+
+.btn-submit {
+    background-color: #FA6916;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-submit:hover {
+    background-color: #d55a14; /* Cor de hover para o botão */
+    transform: translateY(-2px);
+}

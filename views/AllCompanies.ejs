@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todas as Transportadoras</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Shrikhand&display=swap" rel="stylesheet">
+    <link rel="icon" href="/images/RotaLogo.png" type="image/x-icon">
+    <link rel="stylesheet" href="./css/AllCompanies.css">
+    <style>
+        .filter-button-company.selected {
+            border: 2px solid #007bff; /* Cor da borda do botão selecionado */
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a class="navbar-brand" href="/">
+            <img class="logo" src="/images/RotaLogo.png" alt="Logo">
+        </a>
+        <div class="nav-right ml-auto">
+            <a href="/" class="nav-link">Voltar</a>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+       
+        <div class="d-flex align-items-center">
+            <div class="top-companies-bar">
+              
+                <h1 class="lol" id="title">Todas as Transportadoras</h1>
+                <div id="applied-filters" class="mt-4" style="font-weight: bold; display: none;"></div>
+            </div>
+            <button class="btn btn-primary2 filter-button"><i class="fas fa-filter" style="color: #ffffff;"></i></button>
+            
+        </div>
+    
+        <div id="companies-container" class="row">
+            <% companies.forEach((company, index) => { %>
+                <div class="col-md-3 col-sm-6 mb-4 company-item <%= index < 8 ? '' : 'hidden' %>" data-index="<%= index %>">
+                    <div class="card">
+                        <img src="<%= company.imagem_nome ? '/uploads/' + company.imagem_nome : '/images/noimage.jpg' %>" class="card-img-top" alt="<%= company.nm_empresa %>">
+                        <div class="card-body">
+                            <h5 class="card-title" title="<%= company.nm_empresa %>"><%= company.nm_empresa %></h5>
+                            <div class="rating">
+                                <% const mediaAvaliacao = parseFloat(company.media_avaliacao); %>
+                                <% if (isNaN(mediaAvaliacao) || mediaAvaliacao === 0) { %>
+                                    <div class="navaliada"><span class="no-rating">Não Avaliada</span></div>
+                                <% } else { %>
+                                    <% const fullStars = Math.floor(mediaAvaliacao); %>
+                                    <% const emptyStars = 5 - fullStars; %>
+                                    <% for (let s = 0; s < fullStars; s++) { %>
+                                        <span><i class="fas fa-star"></i></span>
+                                    <% } %>
+                                    <% for (let s = 0; s < emptyStars; s++) { %>
+                                        <span><i class="far fa-star"></i></span>
+                                    <% } %>
+                                <% } %>
+                            </div>
+                            <a href="/company/<%= company.cd_cnpj %>" class="btn btn-primary">Ver mais</a>
+                        </div>
+                    </div>
+                </div>
+            <% }); %>
+        </div>
+    
+        <div class="pagination mt-4 d-flex justify-content-center" id="pagination-buttons">
+            <button id="prev-btn" class="btn btn-arrow" disabled>&lt;</button>
+            <div id="page-buttons" class="d-flex"></div>
+            <button id="next-btn" class="btn btn-arrow">&gt;</button>
+        </div>
+    </div>
+
+    <div id="filterModal" class="modal" method="POST">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Filtros</h2>
+            <div class="filter-grid">
+                <label for="estado">Estado:</label>
+                <select id="estado" name="estado">
+                    <option value="">Selecione um estado</option>
+                    <option value="AC">Acre</option>
+                    <option value="AL">Alagoas</option>
+                    <option value="AP">Amapá</option>
+                    <option value="AM">Amazonas</option>
+                    <option value="BA">Bahia</option>
+                    <option value="CE">Ceará</option>
+                    <option value="DF">Distrito Federal</option>
+                    <option value="ES">Espírito Santo</option>
+                    <option value="GO">Goiás</option>
+                    <option value="MA">Maranhão</option>
+                    <option value="MT">Mato Grosso</option>
+                    <option value="MS">Mato Grosso do Sul</option>
+                    <option value="MG">Minas Gerais</option>
+                    <option value="PA">Pará</option>
+                    <option value="PB">Paraíba</option>
+                    <option value="PR">Paraná</option>
+                    <option value="PE">Pernambuco</option>
+                    <option value="PI">Piauí</option>
+                    <option value="RJ">Rio de Janeiro</option>
+                    <option value="RN">Rio Grande do Norte</option>
+                    <option value="RS">Rio Grande do Sul</option>
+                    <option value="RO">Rondônia</option>
+                    <option value="RR">Roraima</option>
+                    <option value="SC">Santa Catarina</option>
+                    <option value="SP">São Paulo</option>
+                    <option value="SE">Sergipe</option>
+                    <option value="TO">Tocantins</option>
+                </select>
+                
+            </div>
+            <div class="filter-grid">
+                <label class="filter-name">Categorias:</label>
+                <div class="filter-grid">
+                    <div class="button-group">
+                        <button class="filter-button-company" title="Transporte de Carga Volumosa" data-categoria="Transporte de Carga Volumosa">
+                            <img src="../imagens filtro/container2.png" alt="Transporte de Carga Volumosa" />
+                        </button>
+                        <button class="filter-button-company" title="Transporte de Carga Frigorificada" data-categoria="Transporte de Carga Frigorificada">
+                            <img src="../imagens filtro/frango2.png" alt="Transporte de Carga Frigorificada" />
+                        </button>
+                        <button class="filter-button-company" title="Transporte de Carga Perigosa" data-categoria="Transporte de Carga Perigosa">
+                            <img src="../imagens filtro/radiação.png" alt="Transporte de Carga Perigosa" />
+                        </button>
+                        <button class="filter-button-company" title="Transporte de Carga Líquida" data-categoria="Transporte de Carga Líquida">
+                            <img src="../imagens filtro/gota.png" alt="Transporte de Carga Líquida" />
+                        </button>
+                        <button class="filter-button-company" title="Transporte de Carga Preciosa" data-categoria="Transporte de Carga Preciosa">
+                            <img src="../imagens filtro/precioso.png" alt="Transporte de Carga Preciosa" />
+                        </button>
+                        <button class="filter-button-company" title="Transporte de Carga Frágil" data-categoria="Transporte de Carga Frágil">
+                            <img src="../imagens filtro/móveis.png" alt="Transporte de Carga Frágil" />
+                        </button>
+                        <button class="filter-button-company" title="Transporte de Carga Farmacêutica" data-categoria="Transporte de Carga Farmacêutica">
+                            <img src="../imagens filtro/medicamento.png" alt="Transporte de Carga Farmacêutica" />
+                        </button>
+                        <button class="filter-button-company" title="Transporte de Carga Perecíveis" data-categoria="Transporte de Carga Perecíveis">
+                            <img src="../imagens filtro/vegetal.png" alt="Transporte de Carga Perecíveis" />
+                        </button>
+                        <button class="filter-button-company" title="Transporte de Carga Autopeças" data-categoria="Transporte de Carga Autopeças">
+                            <img src="../imagens filtro/engrenagem.png" alt="Transporte de Carga Autopeças" />
+                        </button>
+                        <button class="filter-button-company" title="Transporte de Carga Cosméticos" data-categoria="Transporte de Carga Cosméticos">
+                            <img src="../imagens filtro/cosmetics.png" alt="Transporte de Carga Cosméticos" />
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <form id="filterForm">
+                <button type="submit" class="btn btn-primary3">Aplicar Filtros</button>
+            </form>
+        </div>
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            const filterButton = document.querySelector('.filter-button');
+            const closeButton = document.querySelector('.close');
+            const filterModal = document.getElementById('filterModal');
+            let selectedCategory = ''; // Variável para armazenar a categoria selecionada
+
+            // Função para alternar a visibilidade do modal
+            function toggleModal(show) {
+                if (show) {
+                    filterModal.classList.add('show');
+                    document.body.classList.add('no-scroll');
+                } else {
+                    filterModal.classList.remove('show');
+                    document.body.classList.remove('no-scroll');
+                }
+            }
+
+            // Abre o modal ao clicar no botão de filtro
+            filterButton.addEventListener('click', () => toggleModal(true));
+
+            // Fecha o modal ao clicar no "X" ou fora do conteúdo do modal
+            closeButton.addEventListener('click', () => toggleModal(false));
+            window.addEventListener('click', (event) => {
+                if (event.target === filterModal) {
+                    toggleModal(false);
+                }
+            });
+
+            // Adiciona evento de clique aos botões de categoria
+            document.querySelectorAll('.filter-button-company').forEach(button => {
+                button.addEventListener('click', () => {
+                    document.querySelectorAll('.filter-button-company').forEach(btn => btn.classList.remove('selected'));
+                    button.classList.add('selected');
+                    selectedCategory = button.getAttribute('data-categoria');
+                });
+            });
+
+            // Lida com a aplicação de filtros
+            document.getElementById('filterForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const estado = document.getElementById('estado').value;
+
+    try {
+        const response = await fetch('/Filter', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ estado, categoria: selectedCategory })
+        });
+
+        if (!response.ok) {
+            throw new Error('Erro ao aplicar filtros');
+        }
+
+        const companies = await response.json();
+        updateCompanyList(companies);
+
+        // Atualiza o texto do filtro aplicado
+        const filtersText = [];
+        if (estado) {
+            filtersText.push(`Estado: ${estado}`);
+        }
+        if (selectedCategory) {
+            filtersText.push(` ${selectedCategory}`);
+        }
+        document.getElementById('applied-filters').innerText = filtersText.join(' | ');
+
+        // Atualiza o título
+        const titleText = filtersText.length ? `Empresas de ${filtersText.join(', ')}` : 'Todas as Empresas';
+        document.getElementById('title').innerText = titleText;
+
+    } catch (error) {
+        console.error('Erro ao aplicar filtros:', error);
+    }
+
+    toggleModal(false);
+});
+
+
+            // Função para atualizar a lista de empresas na tela e recalcular a paginação
+            function updateCompanyList(companies) {
+                const companiesContainer = document.getElementById('companies-container');
+                companiesContainer.innerHTML = ''; // Limpa a lista atual
+
+                companies.forEach(company => {
+                    const companyItem = document.createElement('div');
+                    companyItem.className = 'col-md-3 col-sm-6 mb-4 company-item';
+                    companyItem.innerHTML = `
+                        <div class="card">
+                            <img src="${company.imagem_nome ? '/uploads/' + company.imagem_nome : '/uploads/noimage.jpg'}" class="card-img-top" alt="${company.nm_empresa}">
+                            <div class="card-body">
+                                <h5 class="card-title">${company.nm_empresa}</h5>
+                                <div class="rating">
+                                    ${renderRating(company.media_avaliacao)}
+                                </div>
+                                <a href="/company/${company.cd_cnpj}" class="btn btn-primary">Ver mais</a>
+                            </div>
+                        </div>
+                    `;
+                    companiesContainer.appendChild(companyItem);
+                });
+
+                // Atualiza a lista de empresas e a paginação
+                updatePaginationAndShow(companies.length);
+            }
+
+            function renderRating(mediaAvaliacao) {
+                if (isNaN(mediaAvaliacao) || mediaAvaliacao <= 0) {
+                    return '<span class="navaliada" style="color:black; font-size: 20px; margin-left:15px">Não Avaliada</span>';
+                }
+
+                const fullStars = Math.floor(mediaAvaliacao);
+                const emptyStars = 5 - fullStars;
+                let stars = '';
+
+                for (let s = 0; s < fullStars; s++) {
+                    stars += '<span><i class="fas fa-star"></i></span>';
+                }
+                for (let s = 0; s < emptyStars; s++) {
+                    stars += '<span><i class="far fa-star"></i></span>';
+                }
+
+                return stars;
+            }
+
+            // Lógica de paginação
+            let companies = Array.from(document.querySelectorAll('.company-item'));
+            const itemsPerPage = 8;
+            let totalPages = Math.ceil(companies.length / itemsPerPage);
+            const pageButtonsContainer = document.getElementById('page-buttons');
+            let currentPage = 0;
+            const maxButtons = 5;
+
+            function showPage(page) {
+                const start = page * itemsPerPage;
+                const end = start + itemsPerPage;
+
+                companies.forEach((company, index) => {
+                    if (index >= start && index < end) {
+                        company.classList.remove('hidden');
+                    } else {
+                        company.classList.add('hidden');
+                    }
+                });
+
+                updatePagination();
+            }
+
+            function updatePagination() {
+                pageButtonsContainer.innerHTML = '';
+                const startButton = Math.floor(currentPage / maxButtons) * maxButtons;
+                const endButton = Math.min(startButton + maxButtons, totalPages);
+
+                for (let i = startButton; i < endButton; i++) {
+                    const button = document.createElement('button');
+                    button.innerText = i + 1;
+                    button.className = 'btn btn-outline-primary';
+                    button.disabled = i === currentPage; // Desabilita o botão da página atual
+                    button.addEventListener('click', () => {
+                        currentPage = i;
+                        showPage(currentPage);
+                    });
+                    pageButtonsContainer.appendChild(button);
+                }
+
+                // Atualiza os botões de navegação
+                document.getElementById('prev-btn').disabled = currentPage === 0;
+                document.getElementById('next-btn').disabled = endButton >= totalPages;
+            }
+
+            document.getElementById('prev-btn').addEventListener('click', () => {
+                if (currentPage > 0) {
+                    currentPage = Math.max(0, currentPage - 1);
+                    showPage(currentPage);
+                }
+            });
+
+            document.getElementById('next-btn').addEventListener('click', () => {
+                if (currentPage < totalPages - 1) {
+                    currentPage = Math.min(totalPages - 1, currentPage + 1);
+                    showPage(currentPage);
+                }
+            });
+
+            function updatePaginationAndShow(filteredCount) {
+                companies = Array.from(document.querySelectorAll('.company-item'));
+                totalPages = Math.ceil(filteredCount / itemsPerPage);
+                currentPage = 0; // Resetar a página atual para 0
+                showPage(currentPage); // Mostrar a primeira página
+            }
+
+            // Inicializa a página e a navegação
+            showPage(currentPage);
+        });
+    </script>
+</body>
+</html>

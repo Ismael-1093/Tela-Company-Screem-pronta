@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/Profile.css">
+    <link rel="icon" href="/images/RotaLogo.png" type="image/x-icon">
+    <title>Perfil da Empresa</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  
+    <style>
+        
+body {
+font-family: Arial, sans-serif;
+background-color: #f0f0f0;
+margin: 0;
+padding: 0;
+}
+
+.navbar {
+background-color: #091849;
+color: white;
+padding: 20px 40px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+border-bottom: 4px solid #FA6916;
+width: 100%;
+top: 0;
+z-index: 1000;
+}
+
+.navbar-brand {
+color: #fff;
+font-size: 24px;
+font-weight: bold;
+}
+
+.nav-right {
+display: flex;
+margin-right: 20px;
+}
+
+.nav-right .nav-link {
+color: white;
+text-decoration: none;
+margin-right: 10px;
+padding: 10px 20px;
+transition: background-color 0.3s ease, transform 0.2s ease;
+border-radius: 4px;
+}
+
+.nav-right .nav-link:hover {
+background-color: #FA6916;
+transform: translateY(-2px);
+}
+
+.container {
+max-width: 600px;
+margin: 20px auto;
+background-color: #fff;
+padding: 20px;
+border-radius: 8px;
+box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+font-size: 24px;
+color: #333;
+margin-bottom: 20px;
+}
+
+label {
+font-weight: bold;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="file"] {
+width: calc(100% - 20px);
+padding: 10px;
+margin-bottom: 10px;
+border: 1px solid #ccc;
+border-radius: 4px;
+font-size: 16px;
+transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input[readonly] {
+background-color: #eee;
+cursor: not-allowed;
+}
+
+input[type="text"]:not([readonly]),
+input[type="password"]:not([readonly]),
+input[type="file"]:not([readonly]) {
+cursor: text;
+}
+
+/* Botões principais na página */
+button[type="submit"],
+button[type="button"] {
+padding: 10px 20px;
+border: none;
+border-radius: 4px;
+cursor: pointer;
+font-size: 16px;
+transition: background-color 0.3s ease, transform 0.2s ease;
+margin-top: 10px;
+}
+
+/* Botão de salvar */
+.save-button {
+margin-left: 330px;
+background-color: #28a745; /* Cor de fundo do botão de salvar */
+color: #fff; /* Cor do texto do botão de salvar */
+}
+
+.save-button:hover {
+background-color: #218838; /* Cor de fundo do botão de salvar ao passar o mouse */
+}
+
+/* Botão de cancelar */
+.cancel-button {
+background-color: #6c757d;
+color: #fff; /* Cor do texto do botão de cancelar */
+}
+
+.cancel-button:hover {
+background-color: #5a6268; /* Cor de fundo do botão de cancelar ao passar o mouse */
+}
+
+/* Botão de editar */
+#btnEdit {
+background-color: #28a745;
+color: #ffffff;
+}
+
+#btnEdit:hover {
+background-color: #28a745;
+}
+
+/* Botão de excluir conta */
+.delete-button {
+background-color: #dc3545; /* Cor de fundo do botão de excluir conta */
+color: #fff; /* Cor do texto do botão de excluir conta */
+}
+
+.delete-button:hover {
+background-color: #c82333; /* Cor de fundo do botão de excluir conta ao passar o mouse */
+}
+
+.error-message {
+color: red;
+font-size: 14px;
+margin-top: 5px;
+}
+
+.logo {
+margin-left: 20px;
+max-width: 40px;
+height: auto;
+transition: transform 0.2s ease-in-out;
+}
+
+.logo:hover {
+transform: scale(1.5);
+}
+
+.edit-section {
+opacity: 0;
+max-height: 0;
+overflow: hidden;
+transition: max-height 0.3s ease, opacity 0.3s ease;
+margin-top: 20px;
+}
+
+.edit-section.show {
+opacity: 1;
+max-height: 500px;
+}
+
+.profile-image-container {
+width: 150px;
+height: 150px;
+border-radius: 50%;
+overflow: hidden;
+margin: 10px auto;
+position: relative;
+cursor: pointer;
+transition: background-color 0.3s ease;
+}
+
+.profile-image-container.edit-mode::after {
+content: "";
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: rgba(0, 0, 0, 0.5); /* Escurecer o fundo da imagem */
+opacity: 0;
+transition: opacity 0.3s ease;
+z-index: 1;
+}
+
+.profile-image-container.edit-mode:hover::after {
+opacity: 1;
+}
+
+.profile-image {
+width: 100%;
+height: 100%;
+object-fit: cover;
+position: absolute;
+top: 0;
+left: 0;
+z-index: 0;
+}
+
+.camera-icon {
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+font-size: 24px;
+color: #ffffff;
+opacity: 0;
+transition: opacity 0.3s ease;
+z-index: 2;
+}
+
+.profile-image-container.edit-mode:hover .camera-icon {
+opacity: 1;
+}
+
+#imagem {
+display: none;
+}
+
+.btn-container {
+display: flex;
+justify-content: space-between; /* Alinha os botões nos extremos */
+align-items: center;
+margin-top: 20px;
+}
+
+.left-buttons {
+display: flex;
+gap: 10px; /* Espaço entre os botões de editar e cancelar */
+}
+
+.modal-header {
+background-color: #091849;
+color: white;
+}
+
+.modal-footer .btn {
+margin: 0 5px;
+}
+
+
+
+    </style>
+</head>
+    <body>
+        <nav class="navbar">
+            <a class="navbar-brand" href="#"><img class="logo" src="/images/RotaLogo.png" alt="Logo"></a>
+            <div class="nav-right">
+                <a href="/dashboardE" class="nav-link">Voltar</a>
+            </div>
+        </nav>
+    
+        <div class="container">
+            <h1>Perfil da Empresa</h1>
+            <form id="editForm" action="/ProfileE/editar" method="POST" enctype="multipart/form-data" onsubmit="return validateForm()">
+                <div>
+                    <div class="profile-image-container" id="profileImageContainer">
+                        <img id="previewImage" class="profile-image" src="/uploads/<%= company.nome_imagem %>" alt="Imagem da Empresa">
+                        <i class="fa-solid fa-camera camera-icon"></i>
+                        <input type="file" id="imagem" name="imagem" accept="image/*">
+                    </div>
+    
+                    <label for="cd_cnpj">CNPJ:</label>
+                    <input type="text" id="cd_cnpj" name="cd_cnpj" value="<%= company.cd_cnpj %>" readonly>
+                    <label for="nome">Nome da Empresa:</label>
+                    <input type="text" id="nome" name="nome" value="<%= company.nm_empresa %>" readonly>
+                    <label for="telefone">Telefone:</label>
+                    <input type="text" id="telefone" name="telefone" value="<%= company.telefone %>" readonly>
+                    <label for="ds_site">Site:</label>
+                    <input type="text" id="ds_site" name="ds_site" value="<%= company.ds_site %>" readonly>
+                    <label for="cep">CEP:</label>
+                    <input type="text" id="cep" name="localizacao[cep]" value="<%= company.cep %>" readonly>
+    
+                    <label for="bairro">Bairro:</label>
+                    <input type="text" id="bairro" name="localizacao[bairro]" value="<%= company.bairro %>" readonly>
+                    <label for="cidade">Município:</label>
+                    <input type="text" id="cidade" name="localizacao[cidade]" value="<%= company.cidade %>" readonly>
+                    <label for="estado">Estado:</label>
+                    <input type="text" id="estado" name="localizacao[estado]" value="<%= company.estado %>" readonly>
+                    <label for="rua">Rua:</label>
+                    <input type="text" id="rua" name="localizacao[rua]" value="<%= company.rua %>" readonly>
+                    <label for="numero">Número:</label>
+                    <input type="text" id="numero" name="localizacao[numero]" value="<%= company.numero %>" readonly>
+                </div>
+    
+                <div class="edit-section" id="passwordFields">
+                    <div>
+                        <label for="senha">Nova senha:</label>
+                        <input type="password" id="senha" name="senha">
+                        <div id="senhaError" class="error-message"></div>
+                    </div>
+                    <div>
+                        <label for="confirmar_senha">Confirmar senha:</label>
+                        <input type="password" id="confirmar_senha" name="confirmar_senha">
+                        <div id="confirmarSenhaError" class="error-message"></div>
+                    </div>
+                </div>
+    
+                <div class="btn-container">
+                    <div class="left-buttons">
+                        <button class="cancel-button" type="button" id="btnCancel" style="display: none;">Cancelar</button>
+                        <button class="save-button" type="submit" id="btnSave" style="display: none;">Salvar</button>
+                        <button type="button" id="btnEdit">Editar</button>
+                    </div>
+                    <button type="button" class="delete-button" id="btnDelete" data-toggle="modal" data-target="#deleteModal">Excluir Conta</button>
+                </div>
+            </form>
+        </div>
+    
+        <!-- Modal de Exclusão -->
+        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="deleteModalLabel">Excluir Conta</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Para confirmar a exclusão da conta, por favor, digite sua senha:</p>
+                        <input type="password" id="deletePassword" class="form-control" placeholder="Digite sua senha">
+                        <div id="deletePasswordError" class="error-message"></div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-danger" id="confirmDelete">Excluir Conta</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script>
+                   document.getElementById("btnEdit").onclick = function () {
+            // Remove o atributo readonly de todos os inputs, exceto o CNPJ
+            var inputs = document.getElementsByTagName("input");
+            for (var i = 0; i < inputs.length; i++) {
+                if (inputs[i].id !== "cd_cnpj") {
+                    inputs[i].removeAttribute("readonly");
+                }
+            }
+
+            // Alterna a visibilidade da seção de senha
+            var editSection = document.getElementById("passwordFields");
+            if (editSection.classList.contains("show")) {
+                editSection.classList.remove("show");
+            } else {
+                editSection.classList.add("show");
+            }
+
+            // Alterna o modo de edição da imagem de perfil
+            var profileImageContainer = document.getElementById("profileImageContainer");
+            profileImageContainer.classList.toggle("edit-mode");
+
+            // Exibe o botão de salvar e o botão de cancelar, e oculta o botão de editar e o botão de excluir
+            document.getElementById("btnSave").style.display = "inline-block";
+            document.getElementById("btnCancel").style.display = "inline-block";
+            document.getElementById("btnEdit").style.display = "none";
+            document.getElementById("btnDelete").style.display = "none";
+        }
+
+        document.getElementById("btnCancel").onclick = function () {
+            // Restaura o atributo readonly de todos os inputs
+            var inputs = document.getElementsByTagName("input");
+            for (var i = 0; i < inputs.length; i++) {
+                if (inputs[i].id !== "cd_cnpj") {
+                    inputs[i].setAttribute("readonly", "readonly");
+                }
+            }
+
+            // Remove a classe de exibição da seção de senha e do modo de edição da imagem de perfil
+            document.getElementById("passwordFields").classList.remove("show");
+            document.getElementById("profileImageContainer").classList.remove("edit-mode");
+
+            // Oculta o botão de salvar e o botão de cancelar, e exibe o botão de editar e o botão de excluir
+            document.getElementById("btnSave").style.display = "none";
+            document.getElementById("btnCancel").style.display = "none";
+            document.getElementById("btnEdit").style.display = "inline-block";
+            document.getElementById("btnDelete").style.display = "inline-block";
+        }
+
+        document.getElementById("profileImageContainer").onclick = function() {
+            if (document.getElementById("profileImageContainer").classList.contains("edit-mode")) {
+                document.getElementById("imagem").click();
+            }
+        };
+
+        document.getElementById("imagem").onchange = function(event) {
+            var reader = new FileReader();
+            reader.onload = function() {
+                var preview = document.getElementById("previewImage");
+                preview.src = reader.result;
+            }
+            reader.readAsDataURL(event.target.files[0]);
+        };
+
+        function validateForm() {
+            var senha = document.getElementById("senha").value;
+            var confirmarSenha = document.getElementById("confirmar_senha").value;
+            var senhaError = document.getElementById("senhaError");
+            var confirmarSenhaError = document.getElementById("confirmarSenhaError");
+
+            senhaError.textContent = "";
+            confirmarSenhaError.textContent = "";
+
+            if (senha && senha !== confirmarSenha) {
+                confirmarSenhaError.textContent = "As senhas não conferem.";
+                return false;
+            }
+
+            return true;
+        }
+
+        document.getElementById("confirmDelete").onclick = async function() {
+            var deletePassword = document.getElementById("deletePassword").value;
+            var deletePasswordError = document.getElementById("deletePasswordError");
+            deletePasswordError.textContent = "";
+
+            if (!deletePassword) {
+                deletePasswordError.textContent = "Por favor, digite sua senha.";
+                return;
+            }
+
+            // Enviar solicitação para verificar a senha
+            try {
+                let response = await fetch("/profile/verify-passwordE", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/x-www-form-urlencoded"
+                    },
+                    body: "password=" + encodeURIComponent(deletePassword)
+                });
+                let result = await response.json();
+
+                if (result.status === 'success') {
+                    // Se a senha estiver correta, excluir a conta
+                    response = await fetch("/profile/deleteE", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/x-www-form-urlencoded"
+                        },
+                        body: "cd_cnpj=" + encodeURIComponent(document.getElementById("cd_cnpj").value) + "&senha=" + encodeURIComponent(deletePassword)
+                    });
+
+                    if (response.ok) {
+                        alert("Conta excluída com sucesso.");
+                        window.location.href = "/"; // Redirecionar para a página inicial ou uma página de confirmação
+                    } else {
+                        alert("Ocorreu um erro ao tentar excluir a conta.");
+                    }
+                } else {
+                    deletePasswordError.textContent = result.error;
+                }
+            } catch (error) {
+                alert("Erro ao verificar a senha.");
+            }
+
+            // Fechar o modal
+            $('#deleteModal').modal('hide');
+        }
+
+        document.getElementById("cep").addEventListener("input", async function() {
+            var cep = this.value.replace(/\D/g, ''); // Remove caracteres não numéricos
+
+            if (cep.length === 8) { // Verifica se o CEP tem 8 dígitos
+                try {
+                    let response = await fetch("https://viacep.com.br/ws/" + cep + "/json/");
+                    let data = await response.json();
+
+                    if (!data.erro) {
+                        document.getElementById("bairro").value = data.bairro;
+                        document.getElementById("cidade").value = data.localidade;
+                        document.getElementById("estado").value = data.uf;
+                        document.getElementById("rua").value = data.logradouro;
+                    } else {
+                        alert("CEP não encontrado.");
+                    }
+                } catch (error) {
+                    alert("Erro ao buscar informações do CEP.");
+                }
+            } else {
+                // Limpa os campos se o CEP não tiver 8 dígitos
+                document.getElementById("bairro").value = "";
+                document.getElementById("cidade").value = "";
+                document.getElementById("estado").value = "";
+                document.getElementById("rua").value = "";
+            }
+        });
+
+        </script>
+    
+</body>
+</html>

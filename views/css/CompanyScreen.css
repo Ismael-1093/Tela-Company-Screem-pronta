@@ -1,0 +1,679 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #040c29;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    height: auto;
+    color: #FBF1F1;
+}
+
+nav {
+    background: linear-gradient(#0A2EB1, #040c29);
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    top: 0;
+    position: relative;
+    height: 200px;
+  
+}
+
+.nav-right .ml-auto {
+    background-color: #091849;
+    position: absolute;
+    display: flex;
+}
+
+.nav-link {
+    background: #000;
+    display: block;
+    left: 97%;
+    position: absolute;
+    top: 35px;
+    cursor: pointer;
+     z-index: 50;
+    color: #FFFFFF;
+    border-radius: 100%;
+}
+
+.nav-link:hover {
+    transition: .3s ease;
+    transform: scale(105%);
+    color: #FFFFFF;
+    background-color: #e67f0a;
+    border-radius: 100%;
+}
+
+.company_name {
+    width: auto;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    top: -110px;
+    left: 170px;
+}
+
+.cnpj {
+    font-size: 20px;
+    right: 2%;
+    position: relative;
+    color: rgb(255, 102, 0);
+}
+
+.telefone{
+    width: 40px;
+    height: 40px;
+    border: none;
+    top: 1%;
+    position: relative;
+}
+
+.local {
+    width: 40px;
+    height: 40px;
+    border: none;
+    top: 1%;
+    position: relative;
+}
+
+.email {
+    width: 40px;
+    height: 40px;
+    border: none;
+    top: 1%;
+    position: relative;
+}
+
+.fundação {
+    width: 40px;
+    height: 40px;
+    border: none;
+    top: 1%;
+    position: relative;
+}
+
+.site {
+    width: 40px;
+    height: 40px;
+    border: none;
+    top: 1%;
+    position: relative;
+}
+
+.caminhão {
+    width: 80px;
+    height: 80px;
+    position: absolute;
+    border: none;
+    z-index: 1;
+    top: 50%;
+    left: 79%;
+    opacity: 10%;
+}
+
+.traco {
+    position: absolute;
+    width: 800px;
+    top: 150%;
+    left: 28%;
+    background-color: #fff;
+}
+
+.dilema {
+    font-size: 30px;
+    position: absolute;
+    top: 153%;
+    left: 35%;
+}
+.dilema2 {
+    width: auto;
+    font-size: 30px;
+    position: relative;
+    top: 153%;
+    left: 15%;
+}
+
+.jiboia {
+    transform: scaleX(-1);
+    position: absolute;
+    border: none;
+    top: 145%;
+    width: 27%;
+    left: -3%;
+    image-rendering: pixelated;
+}
+
+.quadro {
+    border: none;
+    position: absolute;
+    transform: rotate(90deg);
+    top: 157%;
+    left: 65%;
+    width: 650px;
+    height: 650px;
+}
+
+.alarme {
+    top: -1275px;
+    position: absolute;
+    left: 545px;
+    border: none;
+    width: 30px;
+    height: 30px;
+    animation: swing 0.5s ease;
+}
+
+.alarme:hover {
+    border-radius: 35%;
+    background-color: #091849; /* Muda a cor de fundo ao passar o mouse */
+    transform: scale(1.2); /* Aumenta o tamanho do item */
+    cursor: pointer; /* Muda o cursor para um "pointer" */
+    transition: ease 0.5s;
+}
+
+.stars i {
+    color: #cccccc;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.stars i.active {
+    color: #FFD700;
+}
+
+.starss i {
+    color: #cccccc;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.starss i.active {
+    color: #FFD700;
+}
+
+.review {
+    color: #000;
+    margin-bottom: 20px;
+    padding: 15px;
+    /* border: 1px solid #e9ecef; */
+    border-radius: 8px;
+    background-color: #637ABF;
+    display: flex;
+    align-items: flex-start;
+    position: relative;
+}
+
+.review .user-info {
+    color: #000;
+    position: relative;
+    width: 50px;
+    height: 50px;
+    margin-right: 15px;
+}
+
+.review .user-info img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-top: 17px;
+}
+
+.review .user-info .user-name {
+    position: absolute;
+    top: 20px;
+    right: 5px;
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    padding: 2px 5px;
+    border-radius: 3px;
+    font-size: 0.75rem;
+}
+
+.review .rating-container {
+    position: absolute;
+    top: 15px;
+    right: 66px;
+    display: flex;
+    align-items: center;
+}
+
+.review .rating-container p {
+    margin: 0;
+    margin-left: 10px;
+}
+
+.review p {
+    margin: 5px 0;
+}
+
+.review hr {
+    border-top: 1px solid #ddd;
+    margin: 10px 0;
+}
+
+.review .user {
+    margin-top: auto;
+    color: #666;
+    font-size: 0.9rem;
+    align-self: flex-end;
+}
+
+.container {
+    position: absolute;
+    top: 94%;
+    left: 9%;
+    padding: 20px;
+    max-width: 1400px;
+    display: flex;
+    flex-direction: row;
+}
+
+.carrossel {
+    position: relative;
+    background-color: #FBF1F1;
+    padding: 20px;
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 1100px;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.comments-row {
+    display: flex; /* Usar flexbox para alinhar os comentários horizontalmente */
+    margin-top: 10px; /* Espaço acima da linha de comentários */
+}
+
+.comment-box {
+    left: -36px; /* Mantém a posição relativa */
+    position: relative; /* Mantém a posição relativa */
+    width: 950px; /* Largura definida */
+    height: auto; /* Altura automática para se ajustar ao conteúdo */
+    max-width: 100%; /* Limita a largura máxima ao contêiner pai */
+    background-color: white; /* Fundo branco */
+    padding: 10px; /* Espaço interno */
+    border: 1px solid #ddd; /* Borda leve */
+    border-radius: 5px; /* Bordas arredondadas */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra leve */
+    overflow-wrap: break-word; /* Quebra palavras longas para evitar overflow */
+    word-wrap: break-word; /* Compatibilidade adicional para quebra de palavras */
+    margin-bottom: 30px; /* Espaçamento entre comentários */
+}
+
+
+/* Estilo para o primeiro comment-box */
+.comment-box-0 {
+    left: -74px;
+}
+
+/* Estilo para o segundo comment-box */
+.comment-box-1 {
+    left: -20px;
+}
+
+/* Estilo para o terceiro comment-box */
+.comment-box-2 {
+    left: 34px;
+}
+
+.container_supremo {
+    width: 1000px;
+}
+
+
+
+
+.info {
+    flex: 1;
+    width: 300px;
+    font-size: 20px;
+}
+
+.map-container {
+    left: 50px;
+    top: 87px;
+    width: 300px;
+    height: 300px;
+    /* Aumentando a altura */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-right: 25px;
+    margin-top: -6%;
+    z-index: 1;
+    position: relative;
+}
+
+.map-container .map-iframe {
+    pointer-events: none;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+
+.rating-title {
+    width: 300px;
+    display: inline-block;
+    margin: 0;
+}
+
+
+
+.map-container .map-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 500%;
+    background: rgba(255, 255, 255, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.map-overlay p {
+    color: black;
+    font-weight: bold;
+}
+
+.rating-section {
+    position: absolute;
+    top: 230%;
+    left: 19%;
+    width: 1200px;
+}
+
+.comments-container {
+    position: absolute;
+    top: 250%;
+    left: 16%;
+}
+
+.rating-section {
+    color: #000;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    max-width: 1100px;
+    margin: 20px auto;
+    border: 1px solid #091849;
+}
+
+.comments-container {
+    left: 19%;
+    position: absolute;
+    background-color: #637ABF;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    max-width: 1100px;
+    margin: 20px auto;
+    border: 1px solid #091849;
+}
+
+.contorno {
+    border-radius: 2%;
+    border: solid 1px #000;
+    border-image: linear-gradient(to top, rgb(255, 115, 0), rgb(3, 14, 75)) 1;
+}
+
+.rating-section h2,
+.comments-container h3 {
+    margin-bottom: 20px;
+}
+
+.address {
+    font-size: 20px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.sino {
+    cursor: pointer;
+    font-size: 24px;
+    line-height: 1;
+ 
+    border-radius: 100px;
+    display: inline-block;
+ 
+    position: relative;
+ 
+}
+
+.profile-image {
+    left: 0px;
+    top: 0px;
+    width: 100%; /* Preenche a largura do círculo */
+    height: 100%; /* Preenche a altura do círculo */
+    object-fit: cover; /* Corta a imagem para preencher sem distorcer */
+    border-radius: 50%; /* Para garantir que a imagem fique redonda */
+}
+
+.circuloo {
+    border-radius: 100%; /* Faz o círculo */
+    background-color: gray; /* Cor de fundo do círculo */
+    position: absolute; /* Para posicionamento absoluto */
+    width: 130px; /* Largura do círculo */
+    height: 130px; /* Altura do círculo */
+    top: 650px; /* Posição vertical */
+    left: 180px; /* Posição horizontal */
+    z-index: 50; /* Camada de sobreposição */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Sombra do círculo */
+    border: 1px solid black; /* Borda do círculo */
+    display: flex; /* Usado para centralizar a imagem */
+    align-items: center; /* Centraliza verticalmente */
+    justify-content: center; /* Centraliza horizontalmente */
+}
+
+.user-name-container {
+    position: relative;
+    left: 35px;
+    top: -6px;
+    background-color: white; /* Fundo branco */
+    padding: 5px 10px; /* Espaço interno: 5px em cima e embaixo, 10px nas laterais */
+    border-radius: 10px; /* Bordas arredondadas */
+    display: inline-block; /* Faz a div se ajustar ao tamanho do conteúdo */
+    margin-bottom: 10px; /* Espaço abaixo */
+}
+
+
+
+.modal.body {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    /* 5 colunas */
+    grid-template-rows: repeat(6, 1fr);
+    /* 6 linhas */
+    gap: 10px;
+    /* Espaçamento entre os itens da grade */
+}
+
+@keyframes swing {
+    20% {
+        transform: rotate(15deg);
+    }
+
+    40% {
+        transform: rotate(-10deg);
+    }
+
+    60% {
+        transform: rotate(5deg);
+    }
+
+    80% {
+        transform: rotate(-5deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+.sino.swing {
+    animation: swing 0.5s ease;
+    cursor: pointer;
+}
+
+
+
+.disabled-sino {
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+
+
+.carrossel {
+    max-width: 95%;
+    top: -175px;
+    left: 45px;
+    overflow: hidden;
+    /* Para ocultar qualquer conteúdo que exceda o container */
+}
+
+.swiper-container {
+    width: 105%;
+    /* Use 100% para ocupar a largura do container */
+    height: 100%;
+    /* Ajuste conforme necessário */
+}
+
+.swiper-slide img {
+    width: 105%; /* A imagem ocupa 100% da largura do slide */
+    height: auto; /* Mantém a proporção da imagem */
+    object-fit: cover; /* Cobre todo o espaço do slide, mantendo a proporção */
+}
+
+
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
+    /* Defina a altura desejada */
+    width: auto;
+    /* Permite que o slide se ajuste ao conteúdo */
+    flex-shrink: 0;
+    /* Impede que o slide encolha */
+}
+
+.swiper-pagination {
+    position: relative;
+    /* Mantenha ou adicione se necessário */
+    bottom: 10px;
+    /* Ajuste a distância do fundo */
+    margin-left: 750px;
+    transform: translateX(-50%);
+    /* Ajusta a posição para centralizar */
+    z-index: 10;
+    /* Certifique-se de que fique acima de outros elementos */
+}
+
+
+
+.invalid-feedback {
+    display: none;
+}
+
+img {
+    border: 1px solid black;
+    position: relative;
+    top: -30px;
+    left: -10px;
+    width: 100vh;
+    height: 100vh;
+}
+
+
+
+
+.custom-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    overflow: hidden;
+    z-index: 1000; /* Garantir que esteja acima dos outros elementos */
+   
+}
+
+.custom-modal-dialog {
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 500px;
+    padding: 20px;
+    
+}
+
+.custom-modal-header, .custom-modal-footer {
+    padding: 15px;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.custom-modal-footer {
+    border-top: 1px solid #dee2e6;
+}
+
+.form-check {
+    margin-bottom: 10px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+}
+
+.btn {
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    color: white;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    color: white;
+}
+
+.close {
+    border: none;
+    background: none;
+    font-size: 24px;
+    cursor: pointer;
+    position: relative;
+    top: -37px;
+}
+
+.grid-form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px; /* Espaçamento entre os campos */
+}
+
+.modal-open .nav-link, .modal-open .company_name {
+    pointer-events: none; /* Desabilita cliques */
+}

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+    <link rel="icon" href="/images/RotaLogo.png" type="image/x-icon">
+    
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Dashboard</title>
+</head>
+
+<body>
+
+    <div class="container">
+       
+        <aside>
+    
+            <div class="toggle">
+                <div class="logo">
+                    <h2>G.E<span class="danger"> Cargo</span></h2>
+                </div>
+                
+                <div class="close" id="close-btn">
+                    <span class="material-icons-sharp">
+                        close
+                    </span>
+                </div>
+            
+            </div>
+
+            <div class="sidebar">
+                
+                <a href="#" class="active">
+                    <span class="material-icons-sharp">
+                        dashboard
+                    </span>
+                    <h3>Dashboard</h3>
+                </a>
+                <a href="/DashboardUser">
+                    <span class="material-icons-sharp">
+                        person_outline
+                    </span>
+                    <h3>Suas Imagens</h3>
+                </a>
+                <a href="#">
+                    <span class="material-icons-sharp">
+                        receipt_long
+                    </span>
+                    <h3>Em breve...</h3>
+                </a>
+                <a href="#" >
+                    <span class="material-icons-sharp">
+                        insights
+                    </span>
+                    <h3>Em breve...</h3>
+                </a>
+              
+       
+              
+              
+              
+                <a href="/logout">
+                    <h3>Sair</h3>
+                </a>
+            </div>
+        </aside>
+        <!-- End of Sidebar Section -->
+
+        <!-- Main Content -->
+        <main>
+            <h1>Suas informações</h1>
+            <!-- Analyses -->
+            <div class="analyse">
+                <div class="sales">
+                    <div class="status">
+                        <div class="info">
+                            <h3>Contador de Avaliações</h3>
+                            <h1 id="avaliacoes-count"><%= quantidadeAvaliacoes %></h1>
+                        </div>
+                        <div class="progresss">
+                            <svg>
+                                <circle cx="38" cy="38" r="36"></circle>
+                            </svg>
+                            <div class="percentage">
+                                <p id="avaliacoes-percentage">+<%= quantidadeAvaliacoes %></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="visits">
+                    <div class="status">
+                        <div class="info">
+                            <h3 style="margin-left: 92px;">Sua Avaliação</h3>
+                            <div class="stars">
+                                <% if (quantidadeAvaliacoes > 0) { %>
+                                    <% for (let i = 0; i < 5; i++) { %>
+                                        <span class="star <%= (i < Math.floor(mediaAvaliacoes)) ? 'filled' : '' %>">&#9733;</span>
+                                    <% } %>
+                                <% } else { %>
+                                    <p>Sua empresa não foi avaliada.</p>
+                                <% } %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="searches">
+                    <div class="status">
+                        <div class="info">
+                            <h3 style="font-size: 12px;">Usuários interessados em sua Empresa</h3>
+                            <h1><%= quantidadeUsuariosInteressados %></h1>
+                        </div>
+                        <div class="progresss">
+                            <svg>
+                                <circle cx="38" cy="38" r="36"></circle>
+                            </svg>
+                            <div class="percentage">
+                                <p>+ <%= quantidadeUsuariosInteressados %></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End of Analyses -->
+
+            <!-- Recent Orders Table -->
+            <div class="recent-orders">
+                <h2>Usuários Interessados</h2>
+                <div class="user-list" id="user-list">
+                    <% if (usuariosInteressados.length > 0) { %>
+                        <% usuariosInteressados.forEach(user => { %>
+                            <div class="user-card">
+                                <img src="<%= user.profileImage ? '/uploads/' + user.profileImage : '/images/noimage.jpg' %>" alt="<%= user.name %>'s profile picture" class="user-profile-image">
+                                <div class="user-info">
+                                    <h3><%= user.nm_users %></h3>
+                                    <p>Categorias: <%= user.categories %></p>
+                                    <p>Endereço: <%= user.rua %>, <%= user.numero %>, <%= user.bairro %>, <%= user.cidade %> - <%= user.estado %>, <%= user.cep %></p>
+                                </div>
+                            </div>
+                        <% }); %>
+                    <% } else { %>
+                        <p>Nenhum usuário interessado encontrado.</p>
+                    <% } %>
+                </div>
+            </div>
+            
+            <!-- End of Recent Orders -->
+
+        </main>
+        <!-- End of Main Content -->
+
+        <!-- Right Section -->
+        <div class="right-section">
+            <div class="nav">
+                <button id="menu-btn">
+                    <span class="material-icons-sharp">
+                        menu
+                    </span>
+                </button>
+                <!--
+                <div class="dark-mode">
+                    <span class="material-icons-sharp active">
+                        light_mode
+                    </span>
+                    <span class="material-icons-sharp">
+                        dark_mode
+                    </span>
+                </div>-->
+                
+
+
+                <div class="profile">
+                    <div class="info">
+                        <p>Olá, <b><%=company.nm_empresa %></b></p>
+                    </div>
+                    <a href="/ProfileE">
+                        <div class="profile-photo">
+                            <img class="profile-image" src="<%= companyImagePath %>" >
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="reminders">
+                <div class="header">
+                    <h2>Avaliações</h2>
+                </div>
+                <div class="notifications" id="avaliacoes-list">
+                    <% if (avaliacoes.length === 0) { %>
+                        <div class="notification">
+                            <p>Não há avaliações disponíveis. As avaliações dos usuários aparecerão aqui.</p>
+                        </div>
+                    <% } else { %>
+                        <% avaliacoes.forEach(avaliacao => { %>
+                            <div class="notification">
+                                <div class="user-profile-image">
+                                    <img src="<%= avaliacao.profileImage ? '/uploads/' + avaliacao.profileImage : '/images/noimage.jpg' %>" alt="<%= avaliacao.nm_users %>'s profile picture" class="user-profile-image">
+                                </div>
+                                <div class="content">
+                                    <div class="info">
+                                        <h3><%= avaliacao.nm_users %></h3>
+                                        <div class="stars2">
+                                            <% for (let i = 0; i < 5; i++) { %>
+                                                <span class="star2 <%= (i < Math.floor(avaliacao.avaliacao)) ? 'filled' : '' %>">&#9733;</span>
+                                            <% } %>
+                                        </div>
+                                        <p><%= avaliacao.ds_comentario %></p>
+                                    </div>
+                                </div>
+                            </div>
+                        <% }); %>
+                    <% } %>
+                </div>
+            </div>
+            
+
+            <h2>Sua localização atual</h2>
+            <div class="map-container" style="position: relative;">
+               
+                <iframe
+                    src="https://www.google.com/maps?q=<%= encodeURIComponent(localizacao.rua + ', ' + localizacao.numero + ', ' + localizacao.bairro + ', ' + localizacao.cidade + ', ' + localizacao.estado + ', ' + localizacao.cep) %>&output=embed"
+                    allowfullscreen=""
+                    loading="lazy"
+                    style="pointer-events: none; width: 100%; height: 400px; border: 0;">
+                </iframe>
+                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;  display: flex; align-items: center; justify-content: center;">
+                </div>
+            </div>
+        </div>
+        
+
+    
+    </div>
+
+    <script src="/js/dashboard.js"></script>
+
+   
+    
+</body>
+
+</html>

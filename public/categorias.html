@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/categoria.css">
+    <title>Escolha suas categorias</title>
+</head>
+<body>
+    <nav>
+        <a class="navbar-brand" href="/index.ejs">
+            <img class="logo" src="/images/RotaLogo.png" alt="Logo" />
+        </a>
+        <div class="nav-right">
+            <a href="./registerE.html" class="nav-link">Inscreva-se</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h5 class="card-title">Escolha suas categorias</h5>
+        <div class="card">
+            <div class="card-body">
+                <form action="/submit-categorias" method="POST">
+                    <label for="categoria" class="form-label">Selecione a categoria:</label>
+                    <select id="categoria" name="categoria" class="form-control">
+                        <option value="Transporte de Carga Geral">Transporte de Carga Geral</option>
+                        <option value="Transporte de Carga Frigorificada">Transporte de Carga Frigorificada</option>
+                        <option value="Transporte de Carga Perigosa">Transporte de Carga Perigosa</option>
+                        <option value="Transporte de Carga Volumosa">Transporte de Carga Volumosa</option>
+                        <option value="Transporte de Carga Líquida">Transporte de Carga Líquida</option>
+                        <option value="Transporte de Carga Frágil">Transporte de Carga Frágil</option>
+                        <option value="Transporte de Carga Farmacêutica">Transporte de Carga Farmacêutica</option>
+                        <option value="Transporte de Carga Perecíveis">Transporte de Carga Perecíveis</option>
+                        <option value="Transporte de Carga Autopeças">Transporte de Carga Autopeças</option>
+                        <option value="Transporte de Carga Cosméticos">Transporte de Carga Cosméticos</option>
+                        <option value="Transporte de Carga Preciosa">Transporte de Carga Preciosa</option>
+                    </select>
+                    <button type="submit" class="btn-submit">Enviar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,297 @@
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            background-color: #091849;
+            color: white;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 4px solid #FA6916;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar-brand {
+            color: #fff;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .nav-right {
+            display: flex;
+            margin-right: 20px;
+        }
+
+        .nav-right .nav-link {
+            color: white;
+            text-decoration: none;
+            margin-right: 10px;
+            padding: 10px 20px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            border-radius: 4px;
+        }
+
+        .nav-right .nav-link:hover {
+            background-color: #FA6916;
+            transform: translateY(-2px);
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 20px auto;
+            background-color: #fff;
+            margin-top: 5%;
+            padding: 20px;
+            padding-right: 10px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        input[type="file"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        input[readonly] {
+            background-color: #eee;
+            cursor: not-allowed;
+        }
+
+        input[type="text"]:not([readonly]),
+        input[type="password"]:not([readonly]) {
+            cursor: text;
+        }
+
+        button[type="submit"],
+        button[type="button"] {
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        button[type="submit"]:hover,
+        button[type="button"]:hover {
+            background-color: #0056b3;
+        }
+
+        .error-message {
+            color: red;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        .logo {
+            margin-left: 20px;
+            max-width: 40px;
+            height: auto;
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .logo:hover {
+            transform: scale(1.5);
+        }
+
+        .edit-button {
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .edit-button:hover {
+            background-color: #218838;
+        }
+
+        .delete-button {
+            background-color: #dc3545;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .delete-button:hover {
+            background-color: #c82333;
+        }
+
+        .cancel-button {
+            background-color: #6c757d;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .cancel-button:hover {
+            background-color: #5a6268;
+        }
+
+        .edit-section {
+            margin: 0 auto;
+            opacity: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: opacity 0.3s ease, max-height 0.3s ease;
+        }
+
+        .edit-section.show {
+            opacity: 1;
+            max-height: 500px;
+            overflow: auto;
+        }
+
+        .edit-buttons {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .profile-image-container {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 10px auto;
+            background-color: #f0f0f0;
+            position: relative;
+            border: 2px solid #ddd;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: filter 0.3s ease;
+        }
+
+        .profile-image-container.editable {
+            cursor: pointer;
+        }
+
+        .profile-image-container.editable:hover::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            opacity: 1;
+            transition: opacity 0.3s ease;
+        }
+
+        .profile-image-container.editable:hover .camera-icon {
+            opacity: 1;
+        }
+
+        .profile-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .camera-icon {
+            position: absolute;
+            font-size: 24px;
+            color: #ffffff;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 2;
+        }
+
+        #imagem {
+            display: none;
+        }
+
+        /* CSS para garantir que o modal fique centralizado */
+        .modal-dialog {
+            display: flex;
+            align-items: center;
+            min-height: calc(100% - 10rem);
+        }
+
+        .modal-content {
+            margin: auto;
+        }
+
+
+        .profile-section, .evaluated-companies {
+            margin-top: 5%;
+            width: 490px; /* Ajuste a largura conforme necessário */
+            padding: 20px;
+            margin-bottom: 20px; /* Espaço entre os containers */
+            border: 1px solid #ddd; /* Borda para destaque */
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            position: absolute;
+        }
+        
+        .evaluated-companies h2 {
+            margin-top: 0;
+        }
+        
+        .evaluated-companies .list-group-item {
+            display: flex; /* Alinha os itens na lista */
+            justify-content: space-between; /* Espaça entre o nome e o botão */
+            align-items: center; /* Alinha verticalmente */
+        }
+        
+        .evaluated-companies h5 {
+            margin: 0; /* Remove a margem padrão */
+        }
+
+        .pagination {
+            cursor: pointer;
+        }
+        
+        .pagination button {
+            margin: 0 2px;
+        }
+        
+        .btn-arrow {
+            background-color: #091849; /* Cor de fundo da seta */
+            color: #ffffff; /* Cor do texto da seta */
+            border: 1px solid #FA6916;
+        }
+        
+        .btn-arrow:hover {
+           cursor: pointer;
+           color: white;
+        }

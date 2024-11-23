@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="icon" href="/images/RotaLogo.png" type="image/x-icon">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Dashboard</title>
+</head>
+
+<body>
+
+    <div class="container">
+       
+        <aside>
+            <div class="toggle">
+                <div class="logo">
+                    <h2>G.E<span class="danger"> Cargo</span></h2>
+                </div>
+                <div class="close" id="close-btn">
+                    <span class="material-icons-sharp">close</span>
+                </div>
+            </div>
+
+            <div class="sidebar">
+                <a href="/dashboardE">
+                    <span class="material-icons-sharp">dashboard</span>
+                    <h3>Dashboard</h3>
+                </a>
+                <a href="#" class="active">
+                    <span class="material-icons-sharp">person_outline</span>
+                    <h3>Suas Imagens</h3>
+                </a>
+                <a href="#">
+                    <span class="material-icons-sharp">receipt_long</span>
+                    <h3>Em breve...</h3>
+                </a>
+                <a href="/dashboardE">
+                    <span class="material-icons-sharp">insights</span>
+                    <h3>Em breve...</h3>
+                </a>
+                <a href="/logout">
+                    <h3>Sair</h3>
+                </a>
+            </div>
+        </aside>
+
+        <main>
+            <h1>Suas imagens</h1>
+            
+            <form action="/upload-imagens" method="POST" enctype="multipart/form-data">
+                <div class="enviarFotos">
+                    <button type="submit">Enviar Imagens</button>
+                </div>
+                <div class="carrossel">
+                    <div class="swiper-container mySwiper">
+                        <div class="swiper-wrapper">
+                            <% 
+                                // Define o número total de slides
+                                const totalSlides = 4;
+                                // Preenche os slides com imagens existentes
+                                for (let i = 0; i < totalSlides; i++) {
+                                    if (imagens[i]) { // Verifica se existe uma imagem
+                            %>
+                                        <div class="swiper-slide">
+                                            <img src="/uploads/<%= imagens[i].nome %>" alt="<%= imagens[i].nome %>" />
+                                        </div>
+                            <% 
+                                    } else { // Se não existe, cria um input de upload
+                            %>
+                                        <div class="swiper-slide">
+                                            <input type="file" name="imagem_<%= i %>" accept="image/*" onchange="previewImage(event, this)" />
+                                            <img id="preview_<%= i %>" class="image-preview" style="display: none;" />
+                                        </div>
+                            <% 
+                                    }
+                                } 
+                            %>
+                           
+                        </div>
+                            
+                        <div class="swiper-button-next"></div>
+                        <div class="swiper-button-prev"></div>
+                  
+                       
+                        <div class="swiper-pagination"></div>
+                    </div>
+                </div>
+            </form>
+        </main>
+
+        <div class="right-section"></div>
+
+    </div>
+
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="/js/dashboard.js"></script>
+
+    <script>
+         const swiper = new Swiper('.mySwiper', {
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+        });
+
+
+        function previewImage(event, input) {
+        const file = input.files[0];
+        const previewId = 'preview_' + input.name.split('_')[1]; // Pega o índice do input
+        const preview = document.getElementById(previewId);
+
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                preview.src = e.target.result;
+                preview.style.display = 'block'; // Exibe a imagem
+                input.style.display = 'none'; // Esconde o input
+            };
+            reader.readAsDataURL(file);
+        }
+    }
+    </script>
+   
+</body>
+
+</html>

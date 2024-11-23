@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="icon" href="/images/RotaLogo.png" type="image/x-icon">
+    <link rel="stylesheet" href="./css/Profile.css">
+    <title>Perfil do Usuário</title>
+    
+</head>
+<body>
+    <nav class="navbar">
+        <a class="navbar-brand" href="#"><img class="logo" src="/images/RotaLogo.png" alt="Logo"></a>
+        <div class="nav-right">
+            <a href="/" class="nav-link">Voltar</a>
+        </div>
+    </nav>
+
+    <div class="evaluated-companies" style="margin-left: 30px;">
+        <h2>Empresas que você avaliou</h2>
+        <br>
+        <ul class="list-group">
+            <% if (evaluatedCompanies && evaluatedCompanies.length > 0) { %>
+                <% evaluatedCompanies.forEach(review => { %>
+                    <li class="list-group-item">
+                        <div style="display: flex; justify-content: flex-start; align-items: center; width: 100%;">
+                            <h5 style="margin: 0; flex-grow: 1; max-width: 90%;"> <%= review.nm_empresa %> </h5>
+                            <a href="/company/<%= review.cd_cnpj %>"  style="background-color:#091849;" class="btn btn-primary">Ver mais</a>
+                        </div>
+                    </li>
+                <% }); %>
+            <% } else { %>
+                <li class="list-group-item">Nenhuma empresa avaliada até o momento.</li>
+            <% } %>
+        </ul>
+
+        <div class="pagination mt-4 d-flex justify-content-center" id="pagination-buttons">
+            <button id="prev-btn" class="btn btn-arrow" disabled>&lt;</button>
+            <div id="page-buttons" class="d-flex"></div>
+            <button id="next-btn" class="btn btn-arrow">&gt;</button>
+        </div>
+    </div>
+    
+
+    <div class="container">
+        <h1>Perfil do Usuário</h1>
+        <form id="editForm" action="/profile/editar" method="POST" enctype="multipart/form-data" onsubmit="return validateForm()">
+            <div>
+                <div class="profile-image-container" id="profileImageContainer">
+                    <img id="previewImage" class="profile-image" src="/uploads/<%= user.nome_imagem %>" alt="Imagem do Usuário">
+                    <i class="fa-solid fa-camera camera-icon"></i>
+                    <input type="file" id="imagem" name="imagem" disabled>
+                </div>
+
+                <label for="nome">Nome:</label>
+                <input type="text" id="nome" name="nome" value="<%= user.nm_users %>" readonly>
+                <label for="email">Email:</label>
+                <input type="text" id="email" name="email" value="<%= user.email %>" readonly>
+            </div>
+
+            <div class="edit-section" id="editSection">
+                <div>
+                    <label for="senha">Nova senha:</label>
+                    <input type="password" id="senha" name="senha">
+                    <div class="error-message" id="senhaError"></div>
+                </div>
+
+                <div>
+                    <label for="confirmarSenha">Confirmar nova senha:</label>
+                    <input type="password" id="confirmarSenha" name="confirmarSenha">
+                    <div class="error-message" id="confirmarSenhaError"></div>
+                </div>
+            </div>
+
+            <input type="hidden" id="id" name="id" value="<%= user.id %>">
+
+            <div class="edit-buttons">
+                <button type="button" class="edit-button" onclick="toggleEdit()">Editar</button>
+                <button type="button" class="cancel-button" style="display: none;" onclick="toggleEdit()">Cancelar</button>
+                <button type="submit" class="edit-button" style="display: none;">Salvar</button>
+     
+            </div>
+        </form>
+
+       
+        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="confirmDeleteForm" action="/profile/delete" method="POST">
+                            <div class="form-group">
+                                <label for="deletePassword">Digite sua senha para confirmar:</label>
+                                <input type="password" class="form-control" id="deletePassword" name="password" required>
+                                <div class="error-message" id="deletePasswordError"></div>
+                            </div>
+                            <input type="hidden" name="id" value="<%= user.id %>">
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-danger" onclick="confirmDelete()">Excluir</button>
+                    </div>
+                </div>
+            </div>
+
+         
+
+        
+        
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        function toggleEdit() {
+            const editSection = document.getElementById('editSection');
+            const saveButton = document.querySelector('.edit-buttons button[type="submit"]');
+            const editButton = document.querySelector('.edit-buttons .edit-button');
+            const cancelButton = document.querySelector('.edit-buttons .cancel-button');
+            const nomeField = document.getElementById('nome');
+            const profileImageContainer = document.getElementById('profileImageContainer');
+            const imagemInput = document.getElementById('imagem');
+
+            if (editSection.classList.contains('show')) {
+                editSection.classList.remove('show');
+                saveButton.style.display = 'none';
+                editButton.style.display = 'inline-block';
+                cancelButton.style.display = 'none';
+                nomeField.setAttribute('readonly', 'true');
+                profileImageContainer.classList.remove('editable');
+                imagemInput.setAttribute('disabled', 'true');
+                profileImageContainer.classList.remove('hovered'); 
+                profileImageContainer.style.cursor = 'not-allowed'; 
+            } else {
+                editSection.classList.add('show');
+                saveButton.style.display = 'inline-block';
+                editButton.style.display = 'none';
+                cancelButton.style.display = 'inline-block';
+                nomeField.removeAttribute('readonly');
+                nomeField.focus();
+                profileImageContainer.classList.add('editable');
+                imagemInput.removeAttribute('disabled');
+                profileImageContainer.classList.add('hovered'); 
+                profileImageContainer.style.cursor = 'pointer'; 
+            }
+        }
+
+    
+
+        document.getElementById('profileImageContainer').addEventListener('click', function() {
+            if (this.classList.contains('editable')) {
+                document.getElementById('imagem').click();
+            }
+        });
+
+        document.getElementById('imagem').addEventListener('change', function() {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('previewImage').src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            let evaluatedCompanies = Array.from(document.querySelectorAll('.list-group-item'));
+            const itemsPerPage = 5; // Número de empresas por página
+            let currentPage = 0; // Página atual
+            const totalPages = Math.ceil(evaluatedCompanies.length / itemsPerPage);
+
+            function showPage(page) {
+                const start = page * itemsPerPage;
+                const end = start + itemsPerPage;
+
+                evaluatedCompanies.forEach((company, index) => {
+                    if (index >= start && index < end) {
+                        company.style.display = 'block'; // Exibe a empresa
+                    } else {
+                        company.style.display = 'none'; // Oculta a empresa
+                    }
+                });
+
+                updatePagination();
+            }
+
+            function updatePagination() {
+                const pageButtonsContainer = document.getElementById('page-buttons');
+                pageButtonsContainer.innerHTML = ''; // Limpa os botões de página
+
+                for (let i = 0; i < totalPages; i++) {
+                    const button = document.createElement('button');
+                    button.innerText = i + 1;
+                    button.className = 'btn btn-outline-primary';
+                    button.disabled = i === currentPage; // Desabilita o botão da página atual
+                    button.addEventListener('click', () => {
+                        currentPage = i;
+                        showPage(currentPage);
+                    });
+                    pageButtonsContainer.appendChild(button);
+                }
+
+                document.getElementById('prev-btn').disabled = currentPage === 0; // Habilita/desabilita botão anterior
+                document.getElementById('next-btn').disabled = currentPage >= totalPages - 1; // Habilita/desabilita botão próximo
+            }
+
+            document.getElementById('prev-btn').addEventListener('click', () => {
+                if (currentPage > 0) {
+                    currentPage--;
+                    showPage(currentPage);
+                }
+            });
+
+            document.getElementById('next-btn').addEventListener('click', () => {
+                if (currentPage < totalPages - 1) {
+                    currentPage++;
+                    showPage(currentPage);
+                }
+            });
+
+            // Inicializa a página e a navegação
+            showPage(currentPage);
+        });
+    </script>
+</body>
+</html>
+
+
+

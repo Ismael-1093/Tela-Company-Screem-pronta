@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Inicial</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Shrikhand&display=swap" rel="stylesheet">
+    <link rel="icon" href="/images/RotaLogo.png" type="image/x-icon">
+    <link rel="stylesheet" href="./css/index.css">
+</head>
+<body>
+
+    <nav>
+        <a class="navbar-brand" href="#"><img class="logo" src="/images/RotaLogo.png" alt="Logo"></a>
+        <div class="nav-right">           
+            <% if (status === "loggedIn") { %>
+                <a href="/Profile">
+                    <div class="profile-image-container" id="profileImageContainer">
+                        <img id="previewImage" class="profile-image" src="<%= imagePath %>" alt="Profile Image">
+                    </div>
+                </a>
+                <a href="#" class="nav-link" id="logoutButton">
+                    <i class="fas fa-arrow-right-from-bracket" style="color: #ffffff;"></i>
+                </a>
+            <% } else if (status === "loggedinE") { %>
+                <a href="/profileE">
+                    <div class="profile-image-container2">
+                        <img id="previewImage" class="profile-image" src="<%= companyImagePath %>" alt="Company Profile Image">
+                    </div>
+                </a>
+                <a href="#" class="nav-link" id="logoutButton">
+                    <i class="fas fa-arrow-right-from-bracket" style="color: #ffffff;"></i>
+                </a>
+            <% } else { %>
+                <a href="/Choose" class="nav-link">Entrar</a>
+            <% } %>
+        </div>
+    </nav>
+
+
+    <div class="carrossel">
+            <div class="swiper-container mySwiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide"></div>
+                    <div class="swiper-slide">Slide 2</div>
+                    <div class="swiper-slide">Slide 3</div>
+                    <div class="swiper-slide">Slide 4</div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+    </div>
+    
+  
+
+    <!-- Modal de Confirmação -->
+    <div class="modal fade" id="confirmLogoutModal" tabindex="-1" role="dialog" aria-labelledby="confirmLogoutModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Tem certeza de que deseja sair da sua conta?
+                </div>
+                <div class="modal-footer">
+                    <a href="/logout" class="btn btn-primary" style="width: 110px; margin-right: 170px;">Sair</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br><br>
+    <div class="top-companies-bar">
+        <h1 class="lol">Top Transportadoras</h1>
+
+    </div>
+
+    <div class="top-companies-circle">
+        
+    </div>
+
+
+
+    <div class="container mt-5">
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+                <% for (let i = 0; i < companies.length; i += 5) { %>
+                    <div class="carousel-item <%= i === 0 ? 'active' : '' %>">
+                        <div class="row">
+                            <% for (let j = i; j < i + 5 && j < companies.length; j++) { %>
+                                <div class="col-md-2 mb-4">
+                                    <div class="card">
+                                        <img src="<%= companies[j].imagem_nome ? '/uploads/' + companies[j].imagem_nome : '/uploads/noimage.jpg' %>" class="card-img-top" alt="<%= companies[j].nm_empresa %>">
+                                        <div class="card-body">
+                                            <h5 class="card-title" title="<%= companies[j].nm_empresa %>"><%= companies[j].nm_empresa %></h5>
+                                            <div class="rating">
+                                                <% 
+                                                    const fullStars = Math.floor(companies[j].media_avaliacao);
+                                                    const emptyStars = 5 - fullStars;
+                                                %>
+                                                <% for (let s = 0; s < fullStars; s++) { %>
+                                                    <span><i class="fas fa-star"></i></span>
+                                                <% } %>
+                                                <% for (let s = 0; s < emptyStars; s++) { %>
+                                                    <span><i class="far fa-star"></i></span>
+                                                <% } %>
+                                            </div>
+                                            <a href="/company/<%= companies[j].cd_cnpj %>" class="btn btn-primary">Ver mais</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            <% } %>
+                        </div>
+                    </div>
+                <% } %>
+            </div>
+
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                <i class="fas fa-chevron-left" style="color: #091849; font-size: 30px;" aria-hidden="true"></i>
+                <span class="sr-only">Anterior</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                <i class="fas fa-chevron-right" style="color: #091849; font-size: 30px;" aria-hidden="true"></i>
+                <span class="sr-only">Próximo</span>
+            </a>
+            
+        </div>
+    </div>
+
+    <div class="lol2">
+        <h1 class="lol">Todas as Transportadoras</h1>
+        <a href="/AllCompanies" class="view-all-button">Ver Todas</a>
+    </div>
+
+    <div class="container mt-5">
+        <div id="carouselAlphabetical" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+                <% for (let i = 0; i < allcompanies.length; i += 5) { %>
+                    <div class="carousel-item <%= i === 0 ? 'active' : '' %>">
+                        <div class="row">
+                            <% for (let j = i; j < i + 5 && j < allcompanies.length; j++) { %>
+                                <div class="col-md-2 mb-4">
+                                    <div class="card">
+                                        <img src="<%= allcompanies[j].imagem_nome ? '/uploads/' + allcompanies[j].imagem_nome : '/uploads/noimage.jpg' %>" class="card-img-top" alt="<%= allcompanies[j].nm_empresa %>">
+                                        <div class="card-body">
+                                            <h5 class="card-title" title="<%= allcompanies[j].nm_empresa %>"><%= allcompanies[j].nm_empresa %></h5>
+                                            <div class="rating">
+                                                <% if (allcompanies[j].media_avaliacao === null || allcompanies[j].media_avaliacao === undefined) { %>
+                                                    <span class="no-rating">Não Avaliada</span>
+                                                <% } else { %>
+                                                    <% 
+                                                        const fullStars = Math.floor(allcompanies[j].media_avaliacao);
+                                                        const emptyStars = 5 - fullStars;
+                                                    %>
+                                                    <% for (let s = 0; s < fullStars; s++) { %>
+                                                        <span><i class="fas fa-star"></i></span>
+                                                    <% } %>
+                                                    <% for (let s = 0; s < emptyStars; s++) { %>
+                                                        <span><i class="far fa-star"></i></span>
+                                                    <% } %>
+                                                <% } %>
+                                            </div>
+                                            <a href="/company/<%= allcompanies[j].cd_cnpj %>" class="btn btn-primary">Ver mais</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            <% } %>
+                        </div>
+                    </div>
+                <% } %>
+            </div>
+
+            <a class="carousel-control-prev" href="#carouselAlphabetical" role="button" data-slide="prev">
+                <i class="fas fa-chevron-left" style="color: #091849; font-size: 30px;" aria-hidden="true"></i>
+                <span class="sr-only">Anterior</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselAlphabetical" role="button" data-slide="next">
+                <i class="fas fa-chevron-right" style="color: #091849; font-size: 30px;" aria-hidden="true"></i>
+                <span class="sr-only">Próximo</span>
+            </a>
+            
+        </div>
+    </div>
+<br><br><br><br><br><br><br><br>
+
+    <footer >
+        <div>
+            <p>&copy; <span id="year"></span> G.E Cargo. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+    
+    
+    
+    
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script>
+
+$(document).ready(function() {
+        $('#logoutButton').on('click', function(event) {
+            event.preventDefault(); // Evita o comportamento padrão do link
+            $('#confirmLogoutModal').modal('show'); // Mostra o modal
+        });
+    });
+    
+        const swiper = new Swiper('.mySwiper', {
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+        });
+    </script>
+</body>
+</html>

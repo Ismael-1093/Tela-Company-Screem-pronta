@@ -1,0 +1,162 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f7fa;
+    margin: 0;
+    padding: 20px;
+}
+ 
+h5.title {
+    font-weight: bold;
+    color: #333;
+}
+ 
+/* Card Styles */
+.card {
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+ 
+.card-header {
+    background-color: #343a40;
+    color: white;
+    padding: 15px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+ 
+.card-body {
+    padding: 20px;
+}
+ 
+.card-footer {
+    background-color: #f7f7f7;
+    border-top: 1px solid #e1e1e1;
+    padding: 15px;
+    display: flex;
+    justify-content: flex-end; /* Alinha o botão à direita */
+}
+ 
+/* Ajustando a estrutura para flexbox */
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+ 
+.col-md-8 {
+    flex: 0 0 66.66667%;
+    max-width: 66.66667%;
+}
+ 
+.col-md-4 {
+    flex: 0 0 33.33333%;
+    max-width: 33.33333%;
+}
+ 
+/* Form Styles */
+.form-group {
+    margin-bottom: 15px;
+}
+ 
+label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+}
+ 
+input[type="text"],
+input[type="email"],
+input[type="number"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: border-color 0.3s;
+}
+ 
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="number"]:focus,
+textarea:focus {
+    border-color: #007bff;
+    outline: none;
+}
+ 
+/* Button Styles */
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+ 
+.btn-fill {
+    background-color: #007bff;
+}
+ 
+.btn-fill:hover {
+    background-color: #0056b3;
+}
+ 
+/* Avatar Styles */
+.avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 3px solid #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+ 
+.author {
+    text-align: center;
+    margin: 20px 0;
+}
+ 
+.author .description {
+    color: #777;
+    font-size: 14px;
+}
+ 
+/* Social Buttons */
+.button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+ 
+.btn-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin: 0 5px;
+    font-size: 16px;
+}
+ 
+.btn-facebook {
+    background-color: #3b5998;
+}
+ 
+.btn-twitter {
+    background-color: #1da1f2;
+}
+ 
+.btn-google {
+    background-color: #db4437;
+}
+ 
+.btn-icon:hover {
+    opacity: 0.8;
+}
+
+.logo{
+    position: relative;
+    left: 33px;
+}

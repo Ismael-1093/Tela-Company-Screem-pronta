@@ -1,0 +1,433 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.no-scroll {
+    overflow: hidden; /* Impede a rolagem */
+
+}
+
+.filter-grid {
+    margin: 20px 0;
+    text-align: center; /* Centraliza o conteúdo da grid */
+    overflow: hidden; /* Remove a scrollbar */
+}
+
+.filter-name {
+    font-weight: bold; /* Texto em negrito */
+    text-transform: uppercase; /* Texto em caixa alta */
+    margin-bottom: 75px; /* Espaçamento de 25px abaixo do título */ 
+   margin-right: 15px;
+   margin-top: -17px;
+   position: absolute;
+}
+
+.button-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Centraliza os botões no grupo */
+    gap: 5px; /* Espaçamento entre os botões reduzido */
+}
+
+.filter-buttonfilter-button-company {
+    background-color: #F5F5F5; /* Cor de fundo do botão */
+    color: black; /* Cor do texto */
+    border: none;
+    border-radius: 5px;
+    width: 55px; /* Largura do botão */
+    height: 55px; /* Altura do botão */
+    display: flex; /* Para centralizar o texto */
+    align-items: center; /* Centraliza verticalmente */
+    justify-content: center; /* Centraliza horizontalmente */
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Transição suave para hover */
+    position: relative; /* Para posicionar a imagem */
+}
+
+.filter-button-company img {
+    width: 100%; /* Imagem ocupa todo o botão */
+    height: auto; /* Mantém a proporção da imagem */
+    border-radius: 5px; /* Bordas arredondadas na imagem */
+}
+
+.filter-button-company:hover {
+    background-color: #E0E0E0; /* Cor do botão ao passar o mouse */
+}
+
+
+.button-group {
+    display: grid; /* Muda para grid */
+    grid-template-columns: repeat(5, 1fr); /* 2 colunas */
+    justify-content: center; /* Centraliza os botões no grupo */
+    gap: 5px; /* Espaçamento entre os botões reduzido */
+    overflow: hidden;
+}
+
+.filter-button-company {
+    background-color: #F5F5F5; /* Cor de fundo do botão */
+    color: black; /* Cor do texto */
+    border: none;
+    border-radius: 5px;
+    width:70px; /* Largura do botão */
+    height: 70px; /* Altura do botão */
+    display: flex; /* Para centralizar o texto */
+    align-items: center; /* Centraliza verticalmente */
+    justify-content: center; /* Centraliza horizontalmente */
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Transição suave para hover */
+    position: relative; /* Para posicionar a imagem */
+}
+
+.filter-button-company img {
+    width: 100%; /* Imagem ocupa todo o botão */
+    height: auto; /* Mantém a proporção da imagem */
+    border-radius: 5px; /* Bordas arredondadas na imagem */
+}
+
+.filter-button-company:hover {
+    background-color: #E0E0E0; /* Cor do botão ao passar o mouse */
+}
+
+
+nav {
+    background-color: #091849;
+    color: white;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    z-index: 1000;
+}
+
+nav {
+    background: #00145b;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    top: 0;
+    position: relative;
+    height: 100px;
+}
+.navbar-brand {
+    margin-left: 20px;
+}
+
+.logo {
+    max-width: 40px;
+    height: auto;
+    transition: transform 0.2s ease-in-out;
+}
+
+.logo:hover {
+    transform: scale(1.5);
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.nav-right .nav-link {
+    color: white;
+    text-decoration: none;
+    margin-right: 10px;
+    padding: 10px 20px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+}
+
+.nav-right .nav-link:hover {
+    background-color: #FA6916;
+    transform: translateY(-2px);
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin-top: 70px;
+    padding: 20px;
+    background-color: transparent;
+    border-radius: 8px;
+}
+
+.top-companies-bar {
+    background: linear-gradient(to right, #00145b, #fff);
+    padding: 10px 20px;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+    width: auto;
+    box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.2), 0 6px 15px rgba(0, 0, 0, 0.1);
+    font-family: "Shrikhand", serif;
+   
+    position: relative; /* Posiciona a barra de acordo com o fluxo normal do documento */
+}
+
+.top-companies-bar h1.lol {
+    font-size: 1.55rem;
+    color: #007bff;
+    margin: 0;
+}
+
+.filter-button {
+    margin-left: 20px; /* Adiciona espaço entre a barra e o botão */
+}
+
+.card-deck {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.card-img-top {
+    width: 110px; /* Ajuste a largura conforme necessário */
+    height: 100px; /* Ajuste a altura conforme necessário */
+    object-fit: cover;
+    border-radius: 50%; /* Faz a imagem redonda */
+    margin: 20px 0; /* Espaçamento acima e abaixo */
+    position: relative;
+    left: 29%;
+    top: 5px;
+}
+
+.card-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+    overflow: hidden;
+}
+
+.card-title {
+    font-size: 1.25rem;
+    margin-bottom: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-align: center; /* Centraliza o texto */
+    width: 100%; /* Garante que o título ocupe toda a largura do cartão */
+}
+
+.card {
+    height: 300px;
+    background: radial-gradient(circle, #98A5D7,#c9d2f1, #D2D5EE, #D2D5EE, #CED4EC , #CED4EC);
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 2px solid #091849;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.card-title h5 {
+    font-size: 1rem; /* Ajusta o tamanho da fonte do título */
+    margin-bottom: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis; /* Adiciona a elipse quando o texto é longo */
+    white-space: nowrap; /* Impede a quebra de linha */
+}
+
+.rating {
+    font-size: 23px; /* Tamanho das estrelas */
+    margin-bottom: 10px;
+    display: flex; /* Usar flexbox para facilitar o alinhamento */
+    justify-content: center; /* Centraliza as estrelas horizontalmente */
+    align-items: center; /* Centraliza verticalmente, se necessário */
+    margin-left: 0; /* Remove qualquer margem à esquerda */
+}
+
+
+.rating > span {
+    color: gold; /* Cor das estrelas */
+}
+
+.no-rating {
+    color: black; /* Define a cor do texto "Não Avaliada" como preto */
+    font-size: 16px; /* Ajusta o tamanho da fonte para o texto "Não Avaliada" */
+}
+
+.navaliada span {
+    color: black; /* Define a cor do texto "Não Avaliada" como preto */
+    font-size: 20px; /* Ajusta o tamanho da fonte para o texto "Não Avaliada" */
+    margin-left: 15px;
+}
+
+.btn-primary2 {
+    width: 40px;
+    background-color: #091849;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    border: 3px solid #FA6916;
+}
+
+.btn-primary2:hover {
+    background-color: #FA6916;
+    transform: translateY(-2px);
+}
+
+.filter-button {
+    background-color: #091849; /* Adicione uma cor de fundo para ver o botão */
+    padding: 5px; /* Adicione um pouco de preenchimento */
+    
+}
+
+/* Ajustes para a disposição dos cartões em diferentes tamanhos de tela */
+@media (max-width: 1200px) {
+    .card {
+        width: calc(20% - 20px); /* 5 cartões por linha em telas maiores */
+    }
+}
+
+@media (max-width: 992px) {
+    .card {
+        width: calc(25% - 20px); /* 4 cartões por linha em telas médias */
+    }
+}
+
+@media (max-width: 768px) {
+    .card {
+        width: calc(33.33% - 20px); /* 3 cartões por linha em telas pequenas */
+    }
+}
+
+@media (max-width: 576px) {
+    .card {
+        width: calc(50% - 20px); /* 2 cartões por linha em telas muito pequenas */
+    }
+}
+
+.hidden {
+    display: none;
+}
+
+.pagination {
+    cursor: pointer;
+}
+
+.pagination button {
+    margin: 0 2px;
+}
+
+.btn-arrow {
+    background-color: #091849; /* Cor de fundo da seta */
+    color: #ffffff; /* Cor do texto da seta */
+    border: 1px solid #FA6916;
+}
+
+.btn-arrow:hover {
+   cursor: pointer;
+   color: white;
+}
+
+.modal {
+    display: none; /* Esconde o modal por padrão */
+    position: fixed; /* Fica fixo na tela */
+    z-index: 1000; /* Fica acima de outros elementos */
+    left: 0;
+    top: 0;
+    width: 100%; /* Largura total */
+    height: 100%; /* Altura total */
+    background-color: rgba(0, 0, 0, 0.5); /* Fundo escuro com transparência */
+    opacity: 0; /* Inicialmente invisível */
+    transition: opacity 0.3s ease; 
+    visibility: hidden; /* Oculta o modal */
+    transform: translateY(-20px); /* Move o modal para cima */
+}
+
+.modal.show {
+    display: block; /* Mostra o modal */
+    opacity: 1; /* Torna o modal visível */
+    visibility: visible; /* Permite que o modal seja visível */
+    transform: translateY(0); /* Reseta a posição para 0 */
+}
+
+
+
+.modal-content {
+    background-color: #fefefe; /* Fundo branco */
+    position: absolute; /* Muda para absolute */
+    top: 50%; /* Posiciona no meio da tela */
+    left: 50%; /* Centraliza horizontalmente */
+    transform: translate(-50%, -50%); /* Ajusta a posição para o centro */
+    padding: 20px;
+    border: 1px solid #888; /* Borda do modal */
+    width: 80%; /* Largura do modal */
+    max-width: 500px; /* Largura máxima */
+    
+}
+
+
+.close {
+    color: #aaa; /* Cor do botão de fechar */
+    float: right; /* Alinha à direita */
+    font-size: 28px; /* Tamanho do botão */
+    font-weight: bold; /* Negrito */
+    width: 30px;
+    position: relative;
+    left: 430px;
+    transition: 0.3s ease; 
+}
+
+.close:hover,
+.close:focus {
+    color: black; /* Cor ao passar o mouse */
+    text-decoration: none; /* Remove underline */
+    cursor: pointer; /* Cursor de ponteiro */
+}
+
+.filter-box {
+    border: 1px solid #007bff;
+    border-radius: 5px;
+    padding: 20px;
+    margin: 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.filter-box:hover {
+    background-color: #e7f3ff;
+}
+
+.filter-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-height: 60vh; /* Limite a altura da grid de filtros */
+    overflow-y: auto; /* Permite a rolagem apenas dentro da grid se necessário */
+}
+
+.btn-primary3{
+    margin-top: 20px;
+    background-color: #091849;
+    border: 3px solid #FA6916;
+    color: #ffffff;
+    overflow: hidden;
+    margin-left: 37%;
+    
+}
+
+.btn-primary3:hover{
+
+    color: #ffffff;
+
+}
+
+.filter-button-company.selected {
+    border: 2px solid #007bff; /* Cor da borda do botão selecionado */
+}

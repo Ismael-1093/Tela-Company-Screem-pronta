@@ -1,0 +1,33 @@
+{
+  "name": "gecargo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "author": "Victor",
+  "license": "ISC",
+  "dependencies": {
+    "adminjs": "^7.8.13",
+    "axios": "^1.7.2",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.2",
+    "cookie-parser": "^1.4.6",
+    "cookie-session": "^2.1.0",
+    "cpf-cnpj-validator": "^1.0.3",
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "express-session": "^1.18.0",
+    "install": "^0.13.0",
+    "jsonwebtoken": "^9.0.2",
+    "multer": "^1.4.5-lts.1",
+    "mysql2": "^3.11.0",
+    "nodemailer": "^6.9.14",
+    "nodemon": "^2.0.7",
+    "passport": "^0.7.0",
+    "passport-local": "^1.0.0",
+    "swiper": "^11.1.14"
+  }
+}
